@@ -1,0 +1,1 @@
+PREFIX=/usr UDEVDIR="/usr/lib/udev/rules.d" MANDIR="/usr/share/man" PYTHON_INTERPRETER="/usr/bin/python3" PYPKGDIR="/usr/lib/python3.8/site-packages" SHCCFLAGS="-fpic" SHCFLAGS="-fpic" SHCXXFLAGS="-fpic" ENABLE_FIREWORKS=True BUILD_MIXER=True BUILD_TESTS=True ENABLE_OPTIMIZATIONS=True CUSTOM_ENV=True DEBUG=no DEBUG=False DETECT_USERSPACE_ENV=False BUILD_STATIC_LIB=True

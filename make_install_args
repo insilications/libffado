@@ -1,0 +1,1 @@
+PREFIX=/usr UDEVDIR="/usr/lib/udev/rules.d" MANDIR="/usr/share/man" PYTHON_INTERPRETER="/usr/bin/python3" PYPKGDIR="/usr/lib/python3.8/site-packages" DESTDIR=%{buildroot} WILL_DEAL_WITH_XDG_MYSELF=True SHCCFLAGS="-fpic" SHCFLAGS="-fpic" SHCXXFLAGS="-fpic" BUILD_STATIC_LIB=True install

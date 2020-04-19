@@ -1,0 +1,13 @@
+# This file contains additional pkgconfig build requirements that did
+# not get picked up automatically. One name per line, no whitespace.
+libxml-2.0
+libxml++-3.0
+libraw1394
+libiec61883
+libconfig++
+libconfig
+jack
+dbus-c++-1
+dbus-c++-ecore-1
+dbus-c++-glib-1
+xdg-desktop-portal

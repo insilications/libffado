@@ -1,0 +1,25 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+libxml2-dev
+libraw1394-dev
+libiec61883-dev
+libconfig-dev
+libconfig-staticdev
+libxmlplusplus-3.2-dev
+libdbus-c++-dev
+jack2-dev
+alsa-lib
+alsa-lib-dev
+dbus-python-dev
+dbus-dev
+PyQt5
+xdg-desktop-portal-dev
+xdg-desktop-portal-kde
+xdg-utils
+xdg-dbus-proxy
+qscintilla
+pyside2-setup
+sip
+sip-dev
+qscintilla-dev
+python3-core

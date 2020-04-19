@@ -1,0 +1,25 @@
+From db192b670ecf1c051d3bc32309ef9dfec7f5dc5b Mon Sep 17 00:00:00 2001
+From: Francisco Boni <boboniboni@gmail.com>
+Date: Sun, 19 Apr 2020 07:57:40 -0300
+Subject: [PATCH] Fix install under sandbox
+
+---
+ support/dbus/SConscript | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/support/dbus/SConscript b/support/dbus/SConscript
+index e9cb8fb..39ad87c 100644
+--- a/support/dbus/SConscript
++++ b/support/dbus/SConscript
+@@ -81,7 +81,7 @@ for manpage in manpages:
+     env.InstallAs(source=manpage, target=dest)
+ 
+ servicefile = env.ScanReplace('org.ffado.Control.service.in')
+-if env['dbus_service_dir'] and ( env.destdir or os.access( env['dbus_service_dir'], os.W_OK ) ):
++if env['dbus_service_dir']:
+     print("Will install the service-file")
+     targetdir = env.destdir + env['dbus_service_dir'].decode()
+     env.Alias( "install", env.Install( env.destdir + env['dbus_service_dir'].decode(), servicefile ) )
+-- 
+2.26.0
+

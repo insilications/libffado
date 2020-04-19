@@ -1,0 +1,2 @@
+install -vDm 644 support/xdg/ffado.org-ffadomixer.desktop "%{buildroot}/usr/share/applications/ffado-mixer.desktop"
+install -vDm 644 support/xdg/hi64-apps-ffado.png "%{buildroot}/usr/share/icons/hicolor/64x64/apps/ffado-mixer.png"
