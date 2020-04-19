@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libffado
 Version  : 2.4.2
-Release  : 4
+Release  : 5
 URL      : http://www.ffado.org/files/libffado-2.4.2.tgz
 Source0  : http://www.ffado.org/files/libffado-2.4.2.tgz
 Summary  : FFADO
@@ -16,7 +16,6 @@ Requires: libffado-config = %{version}-%{release}
 Requires: libffado-data = %{version}-%{release}
 Requires: libffado-lib = %{version}-%{release}
 Requires: libffado-man = %{version}-%{release}
-Requires: libffado-plugins = %{version}-%{release}
 Requires: libffado-python = %{version}-%{release}
 Requires: libffado-python3 = %{version}-%{release}
 BuildRequires : PyQt5
@@ -123,14 +122,6 @@ Group: Default
 man components for the libffado package.
 
 
-%package plugins
-Summary: plugins components for the libffado package.
-Group: Default
-
-%description plugins
-plugins components for the libffado package.
-
-
 %package python
 Summary: python components for the libffado package.
 Group: Default
@@ -186,7 +177,7 @@ export SHCCFLAGS="-fpic"
 export SHCFLAGS="-fpic"
 export SHCXXFLAGS="-fpic"
 ## make_prepend end
-scons %{?_smp_mflags}  PREFIX=/usr UDEVDIR="/usr/lib/udev/rules.d" MANDIR="/usr/share/man" PYTHON_INTERPRETER="/usr/bin/python3" PYPKGDIR="/usr/lib/python3.8/site-packages" SHCCFLAGS="-fpic" SHCFLAGS="-fpic" SHCXXFLAGS="-fpic" ENABLE_FIREWORKS=True BUILD_MIXER=True BUILD_TESTS=True ENABLE_OPTIMIZATIONS=True CUSTOM_ENV=True DEBUG=no DEBUG=False DETECT_USERSPACE_ENV=False BUILD_STATIC_LIB=True
+scons %{?_smp_mflags}  PREFIX=/usr LIBDIR=/usr/lib64 UDEVDIR="/usr/lib/udev/rules.d" MANDIR="/usr/share/man" PYTHON_INTERPRETER="/usr/bin/python3" PYPKGDIR="/usr/lib/python3.8/site-packages" SHCCFLAGS="-fpic" SHCFLAGS="-fpic" SHCXXFLAGS="-fpic" ENABLE_FIREWORKS=True BUILD_MIXER=True BUILD_TESTS=True ENABLE_OPTIMIZATIONS=True CUSTOM_ENV=True DEBUG=no DEBUG=False DETECT_USERSPACE_ENV=False BUILD_STATIC_LIB=True
 
 %install
 ## install_prepend content
@@ -197,7 +188,7 @@ export SHCCFLAGS="-fpic"
 export SHCFLAGS="-fpic"
 export SHCXXFLAGS="-fpic"
 ## install_prepend end
-scons PREFIX=/usr UDEVDIR="/usr/lib/udev/rules.d" MANDIR="/usr/share/man" PYTHON_INTERPRETER="/usr/bin/python3" PYPKGDIR="/usr/lib/python3.8/site-packages" DESTDIR=%{buildroot} WILL_DEAL_WITH_XDG_MYSELF=True SHCCFLAGS="-fpic" SHCFLAGS="-fpic" SHCXXFLAGS="-fpic" BUILD_STATIC_LIB=True install
+scons PREFIX=/usr LIBDIR=/usr/lib64 UDEVDIR="/usr/lib/udev/rules.d" MANDIR="/usr/share/man" PYTHON_INTERPRETER="/usr/bin/python3" PYPKGDIR="/usr/lib/python3.8/site-packages" DESTDIR=%{buildroot} WILL_DEAL_WITH_XDG_MYSELF=True SHCCFLAGS="-fpic" SHCFLAGS="-fpic" SHCXXFLAGS="-fpic" BUILD_STATIC_LIB=True install
 ## Remove excluded files
 rm -f %{buildroot}/usr/share/libffado/icons/hi64-apps-ffado.png
 ## install_append content
@@ -207,7 +198,7 @@ install -vDm 644 support/xdg/hi64-apps-ffado.png "%{buildroot}/usr/share/icons/h
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/libffado/static_info.txt
+/usr/lib64/libffado/static_info.txt
 
 %files bin
 %defattr(-,root,root,-)
@@ -268,11 +259,13 @@ install -vDm 644 support/xdg/hi64-apps-ffado.png "%{buildroot}/usr/share/icons/h
 %files dev
 %defattr(-,root,root,-)
 /usr/include/libffado/ffado.h
-/usr/lib/pkgconfig/libffado.pc
+/usr/lib64/pkgconfig/libffado.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/libffado.so
+/usr/lib64/libffado.so
+/usr/lib64/libffado.so.2
+/usr/lib64/libffado.so.2.4.2
 
 %files man
 %defattr(0644,root,root,0755)
@@ -282,11 +275,6 @@ install -vDm 644 support/xdg/hi64-apps-ffado.png "%{buildroot}/usr/share/icons/h
 /usr/share/man/man1/ffado-dice-firmware.1
 /usr/share/man/man1/ffado-fireworks-downloader.1
 /usr/share/man/man1/ffado-mixer.1
-
-%files plugins
-%defattr(-,root,root,-)
-/usr/lib/libffado.so.2
-/usr/lib/libffado.so.2.4.2
 
 %files python
 %defattr(-,root,root,-)
