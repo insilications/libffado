@@ -1,11 +1,15 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 libxml2-dev
+libxml2-staticdev
 libraw1394-dev
 libiec61883-dev
+libraw1394-staticdev
+libiec61883-staticdev
 libconfig-dev
 libconfig-staticdev
 libxmlplusplus-3.2-dev
+libdbus-c++-staticdev
 libdbus-c++-dev
 jack2-dev
 alsa-lib
@@ -23,3 +27,4 @@ sip
 sip-dev
 qscintilla-dev
 python3-core
+findutils

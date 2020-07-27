@@ -4,10 +4,10 @@
 #
 %define keepstatic 1
 Name     : libffado
-Version  : 2.4.2
-Release  : 5
-URL      : http://www.ffado.org/files/libffado-2.4.2.tgz
-Source0  : http://www.ffado.org/files/libffado-2.4.2.tgz
+Version  : 2.4.3
+Release  : 6
+URL      : http://www.ffado.org/files/libffado-2.4.3.tgz
+Source0  : http://www.ffado.org/files/libffado-2.4.3.tgz
 Summary  : FFADO
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
@@ -24,13 +24,18 @@ BuildRequires : alsa-lib-dev
 BuildRequires : buildreq-scons
 BuildRequires : dbus-dev
 BuildRequires : dbus-python-dev
+BuildRequires : findutils
 BuildRequires : jack2-dev
 BuildRequires : libconfig-dev
 BuildRequires : libconfig-staticdev
 BuildRequires : libdbus-c++-dev
+BuildRequires : libdbus-c++-staticdev
 BuildRequires : libiec61883-dev
+BuildRequires : libiec61883-staticdev
 BuildRequires : libraw1394-dev
+BuildRequires : libraw1394-staticdev
 BuildRequires : libxml2-dev
+BuildRequires : libxml2-staticdev
 BuildRequires : libxmlplusplus-3.2-dev
 BuildRequires : pkgconfig(dbus-c++-1)
 BuildRequires : pkgconfig(dbus-c++-ecore-1)
@@ -53,8 +58,10 @@ BuildRequires : xdg-dbus-proxy
 BuildRequires : xdg-desktop-portal-dev
 BuildRequires : xdg-desktop-portal-kde
 BuildRequires : xdg-utils
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 Patch1: 0001-Fix-install-under-sandbox.patch
-Patch2: libffado-2.4.2-python38.patch
 
 %description
 FFADO v2.4
@@ -141,10 +148,9 @@ python3 components for the libffado package.
 
 
 %prep
-%setup -q -n libffado-2.4.2
-cd %{_builddir}/libffado-2.4.2
+%setup -q -n libffado-2.4.3
+cd %{_builddir}/libffado-2.4.3
 %patch1 -p1
-%patch2 -p1
 
 %build
 ## build_prepend content
@@ -259,13 +265,13 @@ install -vDm 644 support/xdg/hi64-apps-ffado.png "%{buildroot}/usr/share/icons/h
 %files dev
 %defattr(-,root,root,-)
 /usr/include/libffado/ffado.h
+/usr/lib64/libffado.so
 /usr/lib64/pkgconfig/libffado.pc
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libffado.so
 /usr/lib64/libffado.so.2
-/usr/lib64/libffado.so.2.4.2
+/usr/lib64/libffado.so.2.4.3
 
 %files man
 %defattr(0644,root,root,0755)
