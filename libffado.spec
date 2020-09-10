@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libffado
 Version  : 2.4.3
-Release  : 6
+Release  : 7
 URL      : http://www.ffado.org/files/libffado-2.4.3.tgz
 Source0  : http://www.ffado.org/files/libffado-2.4.3.tgz
 Summary  : FFADO
@@ -164,6 +164,7 @@ export SHCXXFLAGS="-fpic"
 unset http_proxy
 unset https_proxy
 unset no_proxy
+export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
@@ -175,6 +176,9 @@ export FFLAGS="-O3 -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dt
 export CFFLAGS="-O3 -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-sort-common -Wl,-z,now -Wl,-z,relro -Wno-error -Wp,-D_REENTRANT -falign-functions=32 -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -feliminate-unused-debug-types -ffat-lto-objects -fipa-pta -floop-nest-optimize -flto=12 -fno-PIC -fno-PIE -fno-math-errno -fno-pie -fno-plt -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -fpic -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -g -m64 -malign-data=cacheline -march=native -mtls-dialect=gnu2 -mtune=native -pipe "
 export LDFLAGS="-O3 -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--hash-style=gnu -Wl,-O2 -Wl,-sort-common -Wl,-z,now -Wl,-z,relro -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -ffat-lto-objects -fipa-pta -floop-nest-optimize -flto=12 -fno-PIC -fno-PIE -fno-pie -fno-plt -fno-semantic-interposition -fno-stack-protector -fpic -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -march=native -mtls-dialect=gnu2 -mtune=native "
 export CXXFLAGS="-O3 -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-sort-common -Wl,-z,now -Wl,-z,relro -Wno-error -Wp,-D_REENTRANT -falign-functions=32 -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -feliminate-unused-debug-types -ffat-lto-objects -fipa-pta -floop-nest-optimize -flto=12 -fno-PIC -fno-PIE -fno-math-errno -fno-pie -fno-plt -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -fpic -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -funroll-loops -fuse-ld=bfd -fuse-linker-plugin -fvisibility-inlines-hidden -g -m64 -malign-data=cacheline -march=native -mtls-dialect=gnu2 -mtune=native -pipe "
+##
+%define _lto_cflags 1
+##
 ## make_prepend content
 find . -type f -name 'Makefile' -exec sed -i 's/\-fPIC/\-fpic/g' {} \;
 find . -type f -name 'configure' -exec sed -i 's/\-fPIC/\-fpic/g' {} \;
@@ -204,7 +208,6 @@ install -vDm 644 support/xdg/hi64-apps-ffado.png "%{buildroot}/usr/share/icons/h
 
 %files
 %defattr(-,root,root,-)
-/usr/lib64/libffado/static_info.txt
 
 %files bin
 %defattr(-,root,root,-)
@@ -266,6 +269,7 @@ install -vDm 644 support/xdg/hi64-apps-ffado.png "%{buildroot}/usr/share/icons/h
 %defattr(-,root,root,-)
 /usr/include/libffado/ffado.h
 /usr/lib64/libffado.so
+/usr/lib64/libffado/static_info.txt
 /usr/lib64/pkgconfig/libffado.pc
 
 %files lib
